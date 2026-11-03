@@ -621,7 +621,7 @@ const HomePage = ({
           Ultimate Racing Experience
         </p>
 
-        <div className="w-16 h-24 xs:w-20 xs:h-28 sm:w-24 sm:h-32 md:w-28 md:h-40 lg:w-32 lg:h-44 xl:w-36 xl:h-48 2xl:w-44 2xl:h-56 4xl:w-56 4xl:h-72 mt-3 xs:mt-4 p-1.5 xs:p-2 rounded-2xl border border-white/10 bg-white/5 grid place-items-center shrink-0">
+        <div className="w-8 h-10 xs:w-20 xs:h-28 sm:w-24 sm:h-32 md:w-28 md:h-30 lg:w-20 lg:h-28 xl:w-20 xl:h-26 2xl:w-20 2xl:h-26 4xl:w-20 4xl:h-28 mt-3 xs:mt-4 p-1.5 xs:p-2 rounded-2xl border border-white/10 bg-white/5 grid place-items-center shrink-0">
           <CarSprite
             image={selectedCar.image}
             alt={selectedCar.name}
@@ -652,7 +652,7 @@ const HomePage = ({
           <span>RACE NOW</span>
         </button>
 
-        <div className="grid grid-cols-2 gap-1.5 xs:gap-2 sm:gap-3">
+        <div className="grid grid-cols-2 py-10 gap-1.5 xs:gap-2 sm:gap-3">
           <button
             onClick={onGarage}
             className="py-2.5 xs:py-3 bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 text-white font-bold rounded-xl sm:rounded-2xl text-[10px] xs:text-xs sm:text-base lg:text-lg tracking-wider grid grid-flow-col auto-cols-max place-items-center justify-center gap-1 xs:gap-2 transition-all"

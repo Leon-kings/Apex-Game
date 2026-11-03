@@ -806,7 +806,6 @@ const HomePage = ({
   onStart,
   onGarage,
   onHistory,
-  coins,
   playerName,
   setPlayerName,
   leaderboard,

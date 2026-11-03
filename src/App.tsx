@@ -1423,8 +1423,8 @@ export default function App() {
   const showChrome = view !== "race";
 
   return (
-    <div className="min-h-screen w-full rounded-2xl bg-black font-sans selection:bg-cyan-500 selection:text-white flex justify-center overflow-x-hidden">
-      <div className="relative w-full bg-[#050810] shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col min-h-screen">
+    <div className="w-full rounded-2xl bg-black font-sans selection:bg-cyan-500 selection:text-white flex justify-center overflow-x-hidden">
+      <div className="relative w-full bg-[#050810] shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col ">
         {showChrome && (
           <Header coins={coins} onHistory={() => setView("history")} />
         )}

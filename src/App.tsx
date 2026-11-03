@@ -607,7 +607,7 @@ const HomePage = ({
       <div className="absolute top-[-20%] left-[-10%] w-[120%] h-[50%] bg-cyan-600/20 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-full h-[40%] bg-fuchsia-600/20 blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="flex-1 w-full z-10 px-2 xs:px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 flex flex-col items-center justify-center py-6 xs:py-8 sm:py-10 lg:py-14">
+      <div className="flex-1 w-full z-10 px-2 xs:px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 flex flex-col items-center justify-center py-6 ">
         <h1 className="grid place-items-center text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 4xl:text-8xl font-black italic tracking-tighter text-center leading-none">
           <span className="block text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 to-cyan-600 drop-shadow-[0_0_25px_rgba(6,182,212,0.8)]">
             NEON

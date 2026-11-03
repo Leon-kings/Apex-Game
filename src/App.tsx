@@ -1720,6 +1720,11 @@ import {
   Trash2,
 } from "lucide-react";
 import "./App.css";
+import traffic1 from "./assets/2b1f29bf-58ce-405c-ae1d-68987fe116b3.jfif";
+import traffic2 from "./assets/Image_4e7bej4e7bej4e7b.jfif";
+import traffic3 from "./assets/Image_dhv1bwdhv1bwdhv1.jfif";
+import traffic4 from "./assets/Image_ypnbbgypnbbgypnb.jfif";
+
 
 // ============================================================================
 // --- Types & Data ---
@@ -1764,12 +1769,20 @@ const ROAD_RIGHT_BOUND = 85;
 const GAME_BG = "#050810";
 
 // YOUR EXACT IMAGES
+// const TRAFFIC_IMAGES = [
+//   "/src/assets/2b1f29bf-58ce-405c-ae1d-68987fe116b3.jfif",
+//   "/src/assets/Image_4e7bej4e7bej4e7b.jfif",
+//   "/src/assets/Image_dhv1bwdhv1bwdhv1.jfif",
+//   "/src/assets/Image_ypnbbgypnbbgypnb.jfif",
+// ];
+
 const TRAFFIC_IMAGES = [
-  "/src/assets/2b1f29bf-58ce-405c-ae1d-68987fe116b3.jfif",
-  "/src/assets/Image_4e7bej4e7bej4e7b.jfif",
-  "/src/assets/Image_dhv1bwdhv1bwdhv1.jfif",
-  "/src/assets/Image_ypnbbgypnbbgypnb.jfif",
+  traffic1,
+  traffic2,
+  traffic3,
+  traffic4,
 ];
+
 const TRAFFIC_VARIANTS = ["sedan", "sport", "sedan", "truck"] as const;
 const TRAFFIC_COLORS = [
   "#ff4d4d",
@@ -1781,11 +1794,58 @@ const TRAFFIC_COLORS = [
 ];
 
 // YOUR EXACT CARS WITH PRICES AND UNLOCK STATES
+// const INITIAL_CARS: VehicleModel[] = [
+//   {
+//     id: "car1",
+//     name: "Apex White",
+//     image: "/public/Image_8knkdd8knkdd8knk.jfif",
+//     color: "#e8eef5",
+//     variant: "sedan",
+//     speedMultiplier: 1.0,
+//     handling: 1.0,
+//     price: 0,
+//     unlocked: true,
+//   },
+//   {
+//     id: "car2",
+//     name: "Luxury Detail",
+//     image: "/public/Image_cwspq4cwspq4cwsp.jfif",
+//     color: "#00e5ff",
+//     variant: "sport",
+//     speedMultiplier: 1.2,
+//     handling: 1.1,
+//     price: 500,
+//     unlocked: false,
+//   },
+//   {
+//     id: "car3",
+//     name: "Shadow Sport",
+//     image: "/public/Image_f7emguf7emguf7em.jfif",
+//     color: "#ff2bd6",
+//     variant: "sport",
+//     speedMultiplier: 1.4,
+//     handling: 0.9,
+//     price: 1500,
+//     unlocked: false,
+//   },
+//   {
+//     id: "car4",
+//     name: "Lambo Rear",
+//     image: "/public/Image_t9ex4zt9ex4zt9ex.jfif",
+//     color: "#ffd400",
+//     variant: "sport",
+//     speedMultiplier: 1.6,
+//     handling: 1.3,
+//     price: 3000,
+//     unlocked: false,
+//   },
+// ];
+
 const INITIAL_CARS: VehicleModel[] = [
   {
     id: "car1",
     name: "Apex White",
-    image: "/public/Image_8knkdd8knkdd8knk.jfif",
+    image: "/Image_8knkdd8knkdd8knk.jfif",
     color: "#e8eef5",
     variant: "sedan",
     speedMultiplier: 1.0,
@@ -1796,7 +1856,7 @@ const INITIAL_CARS: VehicleModel[] = [
   {
     id: "car2",
     name: "Luxury Detail",
-    image: "/public/Image_cwspq4cwspq4cwsp.jfif",
+    image: "/Image_cwspq4cwspq4cwsp.jfif",
     color: "#00e5ff",
     variant: "sport",
     speedMultiplier: 1.2,
@@ -1807,7 +1867,7 @@ const INITIAL_CARS: VehicleModel[] = [
   {
     id: "car3",
     name: "Shadow Sport",
-    image: "/public/Image_f7emguf7emguf7em.jfif",
+    image: "/Image_f7emguf7emguf7em.jfif",
     color: "#ff2bd6",
     variant: "sport",
     speedMultiplier: 1.4,
@@ -1818,7 +1878,7 @@ const INITIAL_CARS: VehicleModel[] = [
   {
     id: "car4",
     name: "Lambo Rear",
-    image: "/public/Image_t9ex4zt9ex4zt9ex.jfif",
+    image: "/Image_t9ex4zt9ex4zt9ex.jfif",
     color: "#ffd400",
     variant: "sport",
     speedMultiplier: 1.6,
@@ -2242,7 +2302,7 @@ const Footer = ({
   onHistory?: () => void;
 }) => (
   <footer className="shrink-0 rounded-2xl w-full border-t border-white/10 bg-black/50 backdrop-blur-md pb-4 xs:pb-6 z-10">
-    <div className="mx-auto w-full max-w-3xl px-2 xs:px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 py-2 grid grid-cols-[1fr_auto] items-center gap-1.5 xs:gap-2">
+    <div className="mx-auto w-full px-2 xs:px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 py-2 grid grid-cols-[1fr_auto] items-center gap-1.5 xs:gap-2">
       <div className="grid py-2 xs:py-4 grid-flow-col auto-cols-max items-center gap-1 xs:gap-1.5 sm:gap-2 min-w-0">
         <Trophy className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-3.5 sm:h-3.5 text-cyan-400 shrink-0" />
         <a

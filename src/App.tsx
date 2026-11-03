@@ -2360,7 +2360,7 @@ const HomePage = ({
   const selectedCar =
     cars.find((c: VehicleModel) => c.id === selectedCarId) || cars[0];
   return (
-    <div className="w-full rounded-2xl bg-[#050810] flex flex-col  z-50 font-sans relative min-h-full overflow-hidden">
+    <div className="w-full rounded-2xl bg-[#050810] flex flex-col  z-50 font-sans relative h-full overflow-hidden">
       <div className="absolute top-[-20%] left-[-10%] w-[120%] h-[50%] bg-cyan-600/20 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-full h-[40%] bg-fuchsia-600/20 blur-[100px] rounded-full pointer-events-none" />
 

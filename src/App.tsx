@@ -18,6 +18,8 @@ import {
   Wind,
   History,
   Trash2,
+  Flag,
+  TrendingUp,
 } from "lucide-react";
 import "./App.css";
 import traffic1 from "./assets/2b1f29bf-58ce-405c-ae1d-68987fe116b3.jfif";
@@ -68,10 +70,7 @@ const ROAD_LEFT_BOUND = 15;
 const ROAD_RIGHT_BOUND = 85;
 const GAME_BG = "#050810";
 
-// YOUR EXACT IMAGES
-
 const TRAFFIC_IMAGES = [traffic1, traffic2, traffic3, traffic4];
-
 const TRAFFIC_VARIANTS = ["sedan", "sport", "sedan", "truck"] as const;
 const TRAFFIC_COLORS = [
   "#ff4d4d",
@@ -81,8 +80,6 @@ const TRAFFIC_COLORS = [
   "#b66dff",
   "#f1f5f9",
 ];
-
-// YOUR EXACT CARS WITH PRICES AND UNLOCK STATES
 
 const INITIAL_CARS: VehicleModel[] = [
   {
@@ -284,7 +281,7 @@ const CarImage = ({
 };
 
 // ============================================================================
-// --- Rear-view car sprites (image only, no SVG fallback) ---
+// --- Car Sprite ---
 // ============================================================================
 type Variant = "sedan" | "sport" | "truck";
 
@@ -491,7 +488,7 @@ const useGameStore = () => {
 };
 
 // ============================================================================
-// --- Header (max-w-3xl) ---
+// --- Header ---
 // ============================================================================
 const Header = ({
   coins,
@@ -500,29 +497,29 @@ const Header = ({
   coins: number;
   onHistory: () => void;
 }) => (
-  <header className="shrink-0 rounded-2xl w-full z-20 border-b border-white/10 bg-black/60 backdrop-blur-md">
-    <div className="w-full px-2 xs:px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 py-1.5 xs:py-2 lg:py-2.5">
-      <div className="mx-auto w-full grid grid-cols-[1fr_auto] items-center gap-1.5 xs:gap-2">
-        <div className="grid grid-flow-col auto-cols-max items-baseline gap-0.5 xs:gap-1 sm:gap-1.5 min-w-0">
-          <span className="text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 to-cyan-600 font-black italic tracking-tighter text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 4xl:text-3xl leading-none whitespace-nowrap">
+  <header className="shrink-0 w-full z-20 border-b border-white/10 bg-black/60 backdrop-blur-md">
+    <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 md:px-6 lg:px-8 py-2 lg:py-3">
+      <div className="flex items-center justify-between gap-2">
+        <div className="flex items-baseline gap-1 sm:gap-1.5 min-w-0">
+          <span className="text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 to-cyan-600 font-black italic tracking-tighter text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-none whitespace-nowrap">
             NEON
           </span>
-          <span className="text-transparent bg-clip-text bg-gradient-to-b from-fuchsia-400 to-fuchsia-700 font-black italic tracking-tighter text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl 4xl:text-3xl leading-none whitespace-nowrap">
+          <span className="text-transparent bg-clip-text bg-gradient-to-b from-fuchsia-400 to-fuchsia-700 font-black italic tracking-tighter text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl 2xl:text-2xl leading-none whitespace-nowrap">
             HIGHWAY
           </span>
         </div>
 
-        <div className="grid grid-flow-col auto-cols-max items-center gap-1 xs:gap-1.5 sm:gap-2 shrink-0">
+        <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
           <button
             onClick={onHistory}
-            className="grid grid-flow-col auto-cols-max items-center gap-0.5 xs:gap-1 bg-black/40 border border-white/10 px-1.5 xs:px-2 sm:px-2.5 py-1 xs:py-1.5 rounded-full text-white text-[9px] xs:text-[10px] sm:text-xs lg:text-sm font-bold hover:bg-white/10 transition whitespace-nowrap"
+            className="flex items-center gap-1 bg-black/40 border border-white/10 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-full text-white text-[10px] sm:text-xs lg:text-sm font-bold hover:bg-white/10 transition whitespace-nowrap"
           >
-            <History className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" />
-            <span>MARKS</span>
+            <History className="w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4" />
+            <span className="hidden xs:inline">MARKS</span>
           </button>
-          <div className="grid grid-flow-col auto-cols-max items-center gap-0.5 xs:gap-1 bg-black/40 border border-white/10 px-1.5 xs:px-2 sm:px-2.5 py-1 xs:py-1.5 rounded-full shadow-[0_0_20px_rgba(250,204,21,0.2)] whitespace-nowrap">
-            <Coins className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4 text-yellow-400" />
-            <span className="text-white font-mono font-bold tracking-wider text-[9px] xs:text-[10px] sm:text-xs lg:text-sm">
+          <div className="flex items-center gap-1 bg-black/40 border border-white/10 px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-full shadow-[0_0_20px_rgba(250,204,21,0.2)] whitespace-nowrap">
+            <Coins className="w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-4 lg:h-4 text-yellow-400" />
+            <span className="text-white font-mono font-bold tracking-wider text-[10px] sm:text-xs lg:text-sm">
               {coins.toLocaleString()}
             </span>
           </div>
@@ -544,24 +541,24 @@ const Footer = ({
   onGarage?: () => void;
   onHistory?: () => void;
 }) => (
-  <footer className="shrink-0 rounded-2xl w-full border-t border-white/10 bg-black/50 backdrop-blur-md pb-4 xs:pb-6 z-10">
-    <div className="mx-auto w-full px-2 xs:px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 py-2 grid grid-cols-[1fr_auto] items-center gap-1.5 xs:gap-2">
-      <div className="grid py-2 xs:py-4 grid-flow-col auto-cols-max items-center gap-1 xs:gap-1.5 sm:gap-2 min-w-0">
-        <Trophy className="w-2.5 h-2.5 xs:w-3 xs:h-3 sm:w-3.5 sm:h-3.5 text-cyan-400 shrink-0" />
+  <footer className="shrink-0 w-full border-t border-white/10 bg-black/50 backdrop-blur-md z-10">
+    <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 xl:px-8 py-2 flex items-center justify-between gap-2">
+      <div className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+        <Trophy className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400 shrink-0" />
         <a
           href="https://www.leonakingeneye.live/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[8px] xs:text-[9px] sm:text-[11px] lg:text-xs text-white font-bold hover:text-cyan-400 tracking-wider uppercase transition-colors whitespace-nowrap"
+          className="text-[9px] sm:text-[11px] lg:text-xs text-white font-bold hover:text-cyan-400 tracking-wider uppercase transition-colors whitespace-nowrap"
         >
           Leon © {new Date().getFullYear()}
         </a>
       </div>
-      <nav className="grid grid-flow-col auto-cols-max items-center gap-1.5 xs:gap-2 lg:gap-3 justify-end">
+      <nav className="flex items-center gap-2 lg:gap-3 justify-end">
         {onHome && (
           <button
             onClick={onHome}
-            className="text-[8px] xs:text-[9px] sm:text-[11px] lg:text-xs text-gray-400 hover:text-cyan-400 font-bold tracking-wider uppercase transition-colors whitespace-nowrap"
+            className="text-[9px] sm:text-[11px] lg:text-xs text-gray-400 hover:text-cyan-400 font-bold tracking-wider uppercase transition-colors whitespace-nowrap"
           >
             Home
           </button>
@@ -569,7 +566,7 @@ const Footer = ({
         {onGarage && (
           <button
             onClick={onGarage}
-            className="text-[8px] xs:text-[9px] sm:text-[11px] lg:text-xs text-gray-400 hover:text-cyan-400 font-bold tracking-wider uppercase transition-colors whitespace-nowrap"
+            className="text-[9px] sm:text-[11px] lg:text-xs text-gray-400 hover:text-cyan-400 font-bold tracking-wider uppercase transition-colors whitespace-nowrap"
           >
             Garage
           </button>
@@ -577,7 +574,7 @@ const Footer = ({
         {onHistory && (
           <button
             onClick={onHistory}
-            className="text-[8px] xs:text-[9px] sm:text-[11px] lg:text-xs text-gray-400 hover:text-fuchsia-400 font-bold tracking-wider uppercase transition-colors whitespace-nowrap"
+            className="text-[9px] sm:text-[11px] lg:text-xs text-gray-400 hover:text-fuchsia-400 font-bold tracking-wider uppercase transition-colors whitespace-nowrap"
           >
             Marks
           </button>
@@ -599,16 +596,29 @@ const HomePage = ({
   leaderboard,
   cars,
   selectedCarId,
+  coins,
+  history,
 }: any) => {
   const selectedCar =
     cars.find((c: VehicleModel) => c.id === selectedCarId) || cars[0];
+
+  const totalRuns = history.length;
+  const bestScore = history.reduce(
+    (max: number, h: RunRecord) => Math.max(max, h.score),
+    0,
+  );
+  const totalCoinsEarned = history.reduce(
+    (sum: number, h: RunRecord) => sum + h.coins,
+    0,
+  );
+
   return (
-    <div className="w-full rounded-2xl bg-[#050810] flex flex-col  z-50 font-sans relative h-full overflow-hidden">
+    <div className="w-full h-full flex flex-col items-center justify-center relative overflow-hidden bg-[#050810]">
       <div className="absolute top-[-20%] left-[-10%] w-[120%] h-[50%] bg-cyan-600/20 blur-[120px] rounded-full pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-full h-[40%] bg-fuchsia-600/20 blur-[100px] rounded-full pointer-events-none" />
 
-      <div className="flex-1 w-full z-10 px-2 xs:px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 flex flex-col items-center justify-center py-6 ">
-        <h1 className="grid place-items-center text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 4xl:text-8xl font-black italic tracking-tighter text-center leading-none">
+      <div className="relative z-10 w-full max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col items-center justify-center gap-4 sm:gap-5">
+        <h1 className="grid place-items-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black italic tracking-tighter text-center leading-none">
           <span className="block text-transparent bg-clip-text bg-gradient-to-b from-cyan-300 to-cyan-600 drop-shadow-[0_0_25px_rgba(6,182,212,0.8)]">
             NEON
           </span>
@@ -617,69 +627,126 @@ const HomePage = ({
           </span>
         </h1>
 
-        <p className="text-cyan-200/60 tracking-[0.2em] sm:tracking-[0.3em] text-[7px] xs:text-[8px] sm:text-xs font-bold uppercase text-center mt-1.5 xs:mt-2">
+        <p className="text-cyan-200/60 tracking-[0.25em] sm:tracking-[0.35em] text-[9px] sm:text-xs font-bold uppercase text-center">
           Ultimate Racing Experience
         </p>
 
-        <div className="w-8 h-10 xs:w-20 xs:h-28 sm:w-24 sm:h-32 md:w-28 md:h-30 lg:w-20 lg:h-28 xl:w-20 xl:h-26 2xl:w-20 2xl:h-26 4xl:w-20 4xl:h-28 mt-3 xs:mt-4 p-1.5 xs:p-2 rounded-2xl border border-white/10 bg-white/5 grid place-items-center shrink-0">
+        <div className="w-24 h-32 sm:w-28 sm:h-36 md:w-32 md:h-40 p-2 rounded-2xl border border-white/10 bg-white/5 grid place-items-center shrink-0 shadow-[0_0_30px_rgba(6,182,212,0.15)]">
           <CarSprite
             image={selectedCar.image}
             alt={selectedCar.name}
             className="w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.25)]"
           />
         </div>
-        <p className="text-white/80 text-[9px] xs:text-[10px] sm:text-xs lg:text-sm font-mono text-center mt-1.5 xs:mt-2">
+        <p className="text-white/80 text-xs sm:text-sm font-mono text-center">
           {selectedCar.name}
         </p>
-      </div>
 
-      <div className="w-full mx-auto px-2 xs:px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 pb-4 xs:pb-6 z-10 grid gap-1.5 xs:gap-2 sm:gap-3 shrink-0">
+        <div className="w-full grid grid-cols-3 gap-2 sm:gap-3">
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-2.5 sm:p-3 flex flex-col items-center gap-1">
+            <Coins className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400" />
+            <span className="text-white font-mono font-bold text-sm sm:text-lg">
+              {coins.toLocaleString()}
+            </span>
+            <span className="text-gray-400 text-[8px] sm:text-[10px] uppercase tracking-wider">
+              Coins
+            </span>
+          </div>
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-2.5 sm:p-3 flex flex-col items-center gap-1">
+            <Gauge className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-400" />
+            <span className="text-white font-mono font-bold text-sm sm:text-lg">
+              {selectedCar.speedMultiplier.toFixed(1)}x
+            </span>
+            <span className="text-gray-400 text-[8px] sm:text-[10px] uppercase tracking-wider">
+              Speed
+            </span>
+          </div>
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-2.5 sm:p-3 flex flex-col items-center gap-1">
+            <Trophy className="w-4 h-4 sm:w-5 sm:h-5 text-fuchsia-400" />
+            <span className="text-white font-mono font-bold text-sm sm:text-lg">
+              {bestScore.toLocaleString()}
+            </span>
+            <span className="text-gray-400 text-[8px] sm:text-[10px] uppercase tracking-wider">
+              Best
+            </span>
+          </div>
+        </div>
+
+        <div className="w-full grid grid-cols-3 gap-2 sm:gap-3">
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-2 sm:p-2.5 flex flex-col items-center gap-0.5">
+            <Flag className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400" />
+            <span className="text-white font-mono font-bold text-xs sm:text-base">
+              {totalRuns}
+            </span>
+            <span className="text-gray-400 text-[7px] sm:text-[9px] uppercase tracking-wider">
+              Runs
+            </span>
+          </div>
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-2 sm:p-2.5 flex flex-col items-center gap-0.5">
+            <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-400" />
+            <span className="text-white font-mono font-bold text-xs sm:text-base">
+              {totalCoinsEarned.toLocaleString()}
+            </span>
+            <span className="text-gray-400 text-[7px] sm:text-[9px] uppercase tracking-wider">
+              Earned
+            </span>
+          </div>
+          <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-2 sm:p-2.5 flex flex-col items-center gap-0.5">
+            <Activity className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-fuchsia-400" />
+            <span className="text-white font-mono font-bold text-xs sm:text-base">
+              {selectedCar.handling.toFixed(1)}x
+            </span>
+            <span className="text-gray-400 text-[7px] sm:text-[9px] uppercase tracking-wider">
+              Handling
+            </span>
+          </div>
+        </div>
+
         <input
           type="text"
           placeholder="ENTER DRIVER NAME"
           value={playerName}
           maxLength={14}
           onChange={(e) => setPlayerName(e.target.value)}
-          className="w-full bg-white/5 backdrop-blur-xl border-2 border-white/10 rounded-xl sm:rounded-2xl px-2.5 xs:px-3 sm:px-4 py-2.5 xs:py-3 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-center font-bold tracking-widest text-[10px] xs:text-xs sm:text-sm lg:text-base transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+          className="w-full bg-white/5 backdrop-blur-xl border-2 border-white/10 rounded-xl px-3 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400 text-center font-bold tracking-widest text-xs sm:text-sm transition-all shadow-[0_0_15px_rgba(0,0,0,0.5)]"
         />
 
         <button
           onClick={onStart}
           disabled={!playerName.trim()}
-          className="w-full py-2.5 xs:py-3 sm:py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:opacity-50 text-white font-black rounded-xl sm:rounded-2xl text-xs xs:text-sm sm:text-lg lg:text-xl tracking-widest shadow-[0_0_30px_rgba(6,182,212,0.5)] active:scale-95 transition-all grid grid-flow-col auto-cols-max place-items-center justify-center gap-1.5 xs:gap-2 sm:gap-3"
+          className="w-full py-3 sm:py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 disabled:opacity-50 text-white font-black rounded-xl text-sm sm:text-lg tracking-widest shadow-[0_0_30px_rgba(6,182,212,0.5)] active:scale-95 transition-all flex items-center justify-center gap-2 sm:gap-3"
         >
-          <Play className="w-3 h-3 xs:w-4 xs:h-4 sm:w-5 sm:h-5 fill-white" />
+          <Play className="w-4 h-4 sm:w-5 sm:h-5 fill-white" />
           <span>RACE NOW</span>
         </button>
 
-        <div className="grid grid-cols-2 py-10 gap-1.5 xs:gap-2 sm:gap-3">
+        <div className="w-full grid grid-cols-2 gap-2 sm:gap-3">
           <button
             onClick={onGarage}
-            className="py-2.5 xs:py-3 bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 text-white font-bold rounded-xl sm:rounded-2xl text-[10px] xs:text-xs sm:text-base lg:text-lg tracking-wider grid grid-flow-col auto-cols-max place-items-center justify-center gap-1 xs:gap-2 transition-all"
+            className="py-2.5 sm:py-3 bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 text-white font-bold rounded-xl text-xs sm:text-base tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 transition-all"
           >
-            <Car size={12} className="xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
+            <Car size={14} className="sm:w-5 sm:h-5" />
             <span>GARAGE</span>
           </button>
           <button
             onClick={onHistory}
-            className="py-2.5 xs:py-3 bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 text-white font-bold rounded-xl sm:rounded-2xl text-[10px] xs:text-xs sm:text-base lg:text-lg tracking-wider grid grid-flow-col auto-cols-max place-items-center justify-center gap-1 xs:gap-2 transition-all"
+            className="py-2.5 sm:py-3 bg-white/5 backdrop-blur-md border border-white/10 hover:bg-white/10 text-white font-bold rounded-xl text-xs sm:text-base tracking-wider flex items-center justify-center gap-1.5 sm:gap-2 transition-all"
           >
-            <History size={12} className="xs:w-4 xs:h-4 sm:w-5 sm:h-5" />
+            <History size={14} className="sm:w-5 sm:h-5" />
             <span>MARKS</span>
           </button>
         </div>
 
         {leaderboard.length > 0 && (
-          <div className="bg-black/40 backdrop-blur-md p-2.5 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/5 w-full mt-1.5 xs:mt-2">
-            <h3 className="text-cyan-400 font-bold text-[10px] xs:text-xs tracking-widest uppercase grid grid-flow-col auto-cols-max place-items-center justify-center gap-1.5 xs:gap-2 mb-1.5 xs:mb-2">
-              <Award size={12} className="xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4" />{" "}
-              Top Drivers
+          <div className="bg-black/40 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/5 w-full">
+            <h3 className="text-cyan-400 font-bold text-[10px] sm:text-xs tracking-widest uppercase flex items-center justify-center gap-2 mb-2">
+              <Award size={14} className="sm:w-4 sm:h-4" /> Top Drivers
             </h3>
-            <div className="grid gap-0.5 xs:gap-1">
+            <div className="grid gap-1">
               {leaderboard.slice(0, 3).map((entry: any, i: number) => (
                 <div
                   key={i}
-                  className="grid grid-cols-[1fr_auto] text-[10px] xs:text-xs text-gray-300 font-mono py-0.5 xs:py-1 border-b border-white/5 last:border-0 gap-1.5 xs:gap-2"
+                  className="flex items-center justify-between text-[10px] sm:text-xs text-gray-300 font-mono py-1 border-b border-white/5 last:border-0 gap-2"
                 >
                   <span className="truncate">
                     {i + 1}. {entry.name}
@@ -698,7 +765,7 @@ const HomePage = ({
 };
 
 // ============================================================================
-// --- Garage Page (models max-w-5xl) ---
+// --- Garage Page ---
 // ============================================================================
 const GaragePage = ({
   onBack,
@@ -708,68 +775,64 @@ const GaragePage = ({
   setSelectedCarId,
   coins,
 }: any) => (
-  <div className="w-full rounded-2xl bg-[#050810] z-50 pb-8 xs:pb-10">
-    <div className="w-full mx-auto max-w-3xl px-2 xs:px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 py-2 xs:py-3 sm:py-4 grid grid-cols-[auto_1fr_auto] items-center gap-1.5 xs:gap-2 border-b border-white/10 bg-black/40 backdrop-blur-md">
+  <div className="w-full h-full flex flex-col bg-[#050810] overflow-y-auto">
+    <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 lg:px-6 py-3 flex items-center justify-between gap-2 border-b border-white/10 bg-black/40 backdrop-blur-md sticky top-0 z-10">
       <button
         onClick={onBack}
-        className="text-white grid grid-flow-col auto-cols-max items-center gap-0.5 xs:gap-1 font-bold hover:text-cyan-400 transition-colors text-[10px] xs:text-xs sm:text-base"
+        className="text-white flex items-center gap-1 font-bold hover:text-cyan-400 transition-colors text-xs sm:text-base"
       >
-        <ChevronLeft className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" /> BACK
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" /> BACK
       </button>
-      <h2 className="text-center text-xs xs:text-sm sm:text-lg lg:text-xl font-black text-white tracking-widest">
+      <h2 className="text-center text-sm sm:text-lg lg:text-xl font-black text-white tracking-widest">
         GARAGE
       </h2>
-      <div className="grid grid-flow-col auto-cols-max items-center gap-0.5 xs:gap-1 sm:gap-2 text-yellow-400 font-mono font-bold text-[10px] xs:text-xs sm:text-base">
-        <Coins size={12} className="xs:w-3.5 xs:h-3.5 sm:w-5 sm:h-5" /> {coins}
+      <div className="flex items-center gap-1 text-yellow-400 font-mono font-bold text-xs sm:text-base">
+        <Coins size={14} className="sm:w-5 sm:h-5" /> {coins}
       </div>
     </div>
 
-    {/* models container max-w-5xl */}
-    <div className="w-full max-w-5xl mx-auto px-2 xs:px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 py-3 xs:py-4">
-      <div className="grid gap-2 xs:gap-3 sm:gap-4">
+    <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 lg:px-6 py-4">
+      <div className="grid gap-3 sm:gap-4">
         {cars.map((car: VehicleModel) => (
           <div
             key={car.id}
-            className={`p-2.5 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl border-2 grid gap-2 xs:gap-3 transition-all duration-300 ${
+            className={`p-3 sm:p-4 rounded-xl sm:rounded-2xl border-2 grid gap-3 transition-all duration-300 ${
               selectedCarId === car.id
                 ? "border-cyan-500 bg-cyan-500/10 shadow-[0_0_20px_rgba(6,182,212,0.2)]"
                 : "border-white/5 bg-white/5 hover:border-white/20"
             }`}
           >
-            <div className="grid grid-cols-[auto_1fr] items-center gap-2 xs:gap-3 sm:gap-4 min-w-0">
-              <div className="w-14 h-20 xs:w-16 xs:h-24 sm:w-20 sm:h-28 md:w-24 md:h-32 lg:w-28 lg:h-36 xl:w-32 xl:h-40 2xl:w-36 2xl:h-44 4xl:w-44 4xl:h-56 rounded-lg sm:rounded-xl p-1 sm:p-2 overflow-hidden grid place-items-center border border-white/10 bg-transparent shrink-0">
+            <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+              <div className="w-16 h-20 sm:w-24 sm:h-32 md:w-28 md:h-36 rounded-lg p-1 sm:p-2 overflow-hidden grid place-items-center border border-white/10 bg-transparent shrink-0">
                 <CarSprite
                   image={car.image}
                   alt={car.name}
                   className="w-full h-full drop-shadow-[0_0_10px_rgba(255,255,255,0.25)]"
                 />
               </div>
-              <div className="min-w-0">
-                <h3 className="text-white font-bold text-xs xs:text-sm sm:text-lg truncate">
+              <div className="min-w-0 flex-1">
+                <h3 className="text-white font-bold text-sm sm:text-lg truncate">
                   {car.name}
                 </h3>
-                <p className="text-gray-400 text-[9px] xs:text-[10px] sm:text-xs grid grid-flow-col auto-cols-max items-center gap-0.5 xs:gap-1 mt-0.5 xs:mt-1">
-                  <Gauge
-                    size={9}
-                    className="xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 text-cyan-400"
-                  />
+                <p className="text-gray-400 text-[10px] sm:text-xs flex items-center gap-1 mt-1">
+                  <Gauge size={11} className="sm:w-3 sm:h-3 text-cyan-400" />
                   <span>Speed: {car.speedMultiplier}x</span>
                 </p>
-                <p className="text-gray-400 text-[9px] xs:text-[10px] sm:text-xs grid grid-flow-col auto-cols-max items-center gap-0.5 xs:gap-1">
+                <p className="text-gray-400 text-[10px] sm:text-xs flex items-center gap-1">
                   <Activity
-                    size={9}
-                    className="xs:w-2.5 xs:h-2.5 sm:w-3 sm:h-3 text-fuchsia-400"
+                    size={11}
+                    className="sm:w-3 sm:h-3 text-fuchsia-400"
                   />
                   <span>Handling: {car.handling}x</span>
                 </p>
               </div>
             </div>
 
-            <div className="grid grid-cols-1">
+            <div>
               {car.unlocked ? (
                 <button
                   onClick={() => setSelectedCarId(car.id)}
-                  className={`w-full px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg sm:rounded-xl text-[10px] xs:text-xs sm:text-sm font-bold grid grid-flow-col auto-cols-max items-center justify-center gap-0.5 xs:gap-1 transition-all ${
+                  className={`w-full px-4 py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1 transition-all ${
                     selectedCarId === car.id
                       ? "bg-cyan-600 text-white"
                       : "bg-white/10 text-gray-300 hover:bg-white/20"
@@ -777,10 +840,7 @@ const GaragePage = ({
                 >
                   {selectedCarId === car.id ? (
                     <>
-                      <CheckCircle2
-                        size={12}
-                        className="xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4"
-                      />
+                      <CheckCircle2 size={14} className="sm:w-4 sm:h-4" />
                       <span>EQUIPPED</span>
                     </>
                   ) : (
@@ -790,13 +850,13 @@ const GaragePage = ({
               ) : (
                 <button
                   onClick={() => unlockCar(car.id, car.price, car.name)}
-                  className={`w-full px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg sm:rounded-xl text-[10px] xs:text-xs sm:text-sm font-bold grid grid-flow-col auto-cols-max items-center justify-center gap-0.5 xs:gap-1 transition-all ${
+                  className={`w-full px-4 py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold flex items-center justify-center gap-1 transition-all ${
                     coins >= car.price
                       ? "bg-yellow-500 text-black hover:bg-yellow-400 shadow-[0_0_15px_rgba(250,204,21,0.4)]"
                       : "bg-black/50 text-gray-500 border border-white/5"
                   }`}
                 >
-                  <Lock size={12} className="xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4" />
+                  <Lock size={14} className="sm:w-4 sm:h-4" />
                   <span>{car.price}</span>
                 </button>
               )}
@@ -820,36 +880,35 @@ const HistoryPage = ({
 }: any) => {
   const [confirm, setConfirm] = useState<null | "clear" | "all">(null);
   return (
-    <div className="w-full rounded-2xl bg-[#050810] z-50 pb-8 xs:pb-10">
-      <div className="w-full mx-auto max-w-3xl px-2 xs:px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 py-2 xs:py-3 sm:py-4 grid grid-cols-[auto_1fr_auto] items-center gap-1.5 xs:gap-2 border-b border-white/10 bg-black/40 backdrop-blur-md">
+    <div className="w-full h-full flex flex-col bg-[#050810] overflow-y-auto">
+      <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 lg:px-6 py-3 flex items-center justify-between gap-2 border-b border-white/10 bg-black/40 backdrop-blur-md sticky top-0 z-10">
         <button
           onClick={onBack}
-          className="text-white grid grid-flow-col auto-cols-max items-center gap-0.5 xs:gap-1 font-bold hover:text-cyan-400 transition-colors text-[10px] xs:text-xs sm:text-base"
+          className="text-white flex items-center gap-1 font-bold hover:text-cyan-400 transition-colors text-xs sm:text-base"
         >
-          <ChevronLeft className="w-4 h-4 xs:w-5 xs:h-5 sm:w-6 sm:h-6" /> BACK
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" /> BACK
         </button>
-        <h2 className="text-center text-xs xs:text-sm sm:text-lg lg:text-xl font-black text-white tracking-widest">
+        <h2 className="text-center text-sm sm:text-lg lg:text-xl font-black text-white tracking-widest">
           MARKS
         </h2>
-        <div className="w-6 xs:w-8 sm:w-12" />
+        <div className="w-8 sm:w-12" />
       </div>
 
-      <div className="w-full max-w-5xl mx-auto px-2 xs:px-3 sm:px-4 lg:px-6 xl:px-8 2xl:px-10 4xl:px-14 py-3 xs:py-4 grid gap-2 xs:gap-3 sm:gap-4">
-        <div className="bg-black/40 backdrop-blur-md p-2.5 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/5">
-          <h3 className="text-cyan-400 font-bold text-[10px] xs:text-xs tracking-widest uppercase grid grid-flow-col auto-cols-max items-center gap-1.5 xs:gap-2 mb-2 xs:mb-3">
-            <Award size={12} className="xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4" /> Best
-            Scores
+      <div className="w-full max-w-4xl mx-auto px-3 sm:px-4 lg:px-6 py-4 grid gap-3 sm:gap-4">
+        <div className="bg-black/40 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/5">
+          <h3 className="text-cyan-400 font-bold text-[10px] sm:text-xs tracking-widest uppercase flex items-center gap-2 mb-2">
+            <Award size={14} className="sm:w-4 sm:h-4" /> Best Scores
           </h3>
           {leaderboard.length === 0 ? (
-            <p className="text-gray-500 text-[10px] xs:text-xs sm:text-sm text-center py-1.5 xs:py-2">
+            <p className="text-gray-500 text-xs sm:text-sm text-center py-2">
               No marks yet.
             </p>
           ) : (
-            <div className="grid gap-0.5 xs:gap-1">
+            <div className="grid gap-1">
               {leaderboard.map((e: any, i: number) => (
                 <div
                   key={i}
-                  className="grid grid-cols-[1fr_auto] text-[10px] xs:text-xs text-gray-300 font-mono py-0.5 xs:py-1 border-b border-white/5 last:border-0 gap-1.5 xs:gap-2"
+                  className="flex items-center justify-between text-xs text-gray-300 font-mono py-1 border-b border-white/5 last:border-0 gap-2"
                 >
                   <span className="truncate">
                     {i + 1}. {e.name}
@@ -861,21 +920,20 @@ const HistoryPage = ({
           )}
         </div>
 
-        <div className="bg-black/40 backdrop-blur-md p-2.5 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-white/5">
-          <h3 className="text-fuchsia-400 font-bold text-[10px] xs:text-xs tracking-widest uppercase grid grid-flow-col auto-cols-max items-center gap-1.5 xs:gap-2 mb-2 xs:mb-3">
-            <History size={12} className="xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4" />{" "}
-            Past Runs
+        <div className="bg-black/40 backdrop-blur-md p-3 sm:p-4 rounded-xl border border-white/5">
+          <h3 className="text-fuchsia-400 font-bold text-[10px] sm:text-xs tracking-widest uppercase flex items-center gap-2 mb-2">
+            <History size={14} className="sm:w-4 sm:h-4" /> Past Runs
           </h3>
           {history.length === 0 ? (
-            <p className="text-gray-500 text-[10px] xs:text-xs sm:text-sm text-center py-1.5 xs:py-2">
+            <p className="text-gray-500 text-xs sm:text-sm text-center py-2">
               No runs recorded.
             </p>
           ) : (
-            <div className="grid gap-0.5 xs:gap-1">
+            <div className="grid gap-1">
               {history.map((h: RunRecord) => (
                 <div
                   key={h.id}
-                  className="grid grid-cols-2 sm:grid-cols-[1fr_auto_auto_auto] gap-x-1.5 xs:gap-x-2 text-[10px] xs:text-xs text-gray-300 font-mono py-0.5 xs:py-1 border-b border-white/5 last:border-0"
+                  className="grid grid-cols-2 sm:grid-cols-[1fr_auto_auto_auto] gap-x-2 text-xs text-gray-300 font-mono py-1 border-b border-white/5 last:border-0"
                 >
                   <span className="text-white/80 truncate">{h.carName}</span>
                   <span>Score: {h.score.toLocaleString()}</span>
@@ -889,35 +947,34 @@ const HistoryPage = ({
           )}
         </div>
 
-        <div className="bg-red-950/30 p-2.5 xs:p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-red-500/30 grid gap-2 xs:gap-3">
-          <h3 className="text-red-400 font-bold text-[10px] xs:text-xs tracking-widest uppercase grid grid-flow-col auto-cols-max items-center gap-1.5 xs:gap-2">
-            <Trash2 size={12} className="xs:w-3.5 xs:h-3.5 sm:w-4 sm:h-4" />{" "}
-            Memory
+        <div className="bg-red-950/30 p-3 sm:p-4 rounded-xl border border-red-500/30 grid gap-2">
+          <h3 className="text-red-400 font-bold text-[10px] sm:text-xs tracking-widest uppercase flex items-center gap-2">
+            <Trash2 size={14} className="sm:w-4 sm:h-4" /> Memory
           </h3>
           {confirm === null ? (
-            <div className="grid gap-1.5 xs:gap-2">
+            <div className="grid gap-2">
               <button
                 onClick={() => setConfirm("clear")}
-                className="w-full py-1.5 xs:py-2 rounded-lg sm:rounded-xl text-[10px] xs:text-xs sm:text-sm font-bold bg-red-900/50 hover:bg-red-800/60 text-red-200 border border-red-500/40 transition"
+                className="w-full py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold bg-red-900/50 hover:bg-red-800/60 text-red-200 border border-red-500/40 transition"
               >
                 Clear Leaderboard & History
               </button>
               <button
                 onClick={() => setConfirm("all")}
-                className="w-full py-1.5 xs:py-2 rounded-lg sm:rounded-xl text-[10px] xs:text-xs sm:text-sm font-bold bg-red-900/50 hover:bg-red-800/60 text-red-200 border border-red-500/40 transition"
+                className="w-full py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold bg-red-900/50 hover:bg-red-800/60 text-red-200 border border-red-500/40 transition"
               >
                 Reset Everything (coins, cars, name)
               </button>
             </div>
           ) : (
-            <div className="grid gap-2 xs:gap-3">
-              <p className="text-red-200 text-[10px] xs:text-xs sm:text-sm text-center">
+            <div className="grid gap-3">
+              <p className="text-red-200 text-xs sm:text-sm text-center">
                 Are you sure? This cannot be undone.
               </p>
-              <div className="grid grid-cols-2 gap-2 xs:gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 <button
                   onClick={() => setConfirm(null)}
-                  className="py-1.5 xs:py-2 rounded-lg sm:rounded-xl text-[10px] xs:text-xs sm:text-sm font-bold bg-white/5 text-white border border-white/10 hover:bg-white/10 transition"
+                  className="py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold bg-white/5 text-white border border-white/10 hover:bg-white/10 transition"
                 >
                   Cancel
                 </button>
@@ -927,7 +984,7 @@ const HistoryPage = ({
                     else clearAllMemory();
                     setConfirm(null);
                   }}
-                  className="py-1.5 xs:py-2 rounded-lg sm:rounded-xl text-[10px] xs:text-xs sm:text-sm font-bold bg-red-600 text-white hover:bg-red-500 transition"
+                  className="py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm font-bold bg-red-600 text-white hover:bg-red-500 transition"
                 >
                   Yes, delete
                 </button>
@@ -941,48 +998,61 @@ const HistoryPage = ({
 };
 
 // ============================================================================
-// --- Results Page ---
+// --- Results Modal ---
 // ============================================================================
-const ResultsPage = ({ score, runCoins, onRestart, onHome }: any) => (
-  <div className="w-full rounded-2xl bg-black/80 p-3 xs:p-4 sm:p-6 flex flex-col justify-center items-center z-50 min-h-full">
-    <div className="w-full max-w-sm grid gap-4 xs:gap-6 place-items-center">
-      <h2 className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-red-500 to-red-800 italic tracking-tighter drop-shadow-[0_0_20px_rgba(220,38,38,0.8)] text-center">
+const ResultsPage = ({
+  score,
+  runCoins,
+  onRestart,
+  onHome,
+}: {
+  score: number;
+  runCoins: number;
+  onRestart: () => void;
+  onHome: () => void;
+}) => (
+  <div
+    className="absolute inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md pointer-events-auto"
+    style={{ pointerEvents: "auto" }}
+  >
+    <div className="w-full max-w-sm flex flex-col items-center gap-5 animate-[fadeIn_0.2s_ease-out]">
+      <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-b from-red-500 to-red-800 italic tracking-tighter drop-shadow-[0_0_20px_rgba(220,38,38,0.8)] text-center">
         CRASHED!
       </h2>
 
-      <div className="bg-[#0a0f1c] p-4 xs:p-5 sm:p-6 rounded-2xl sm:rounded-3xl border border-white/10 w-full grid gap-3 xs:gap-4 sm:gap-6 shadow-2xl relative overflow-hidden">
+      <div className="bg-[#0a0f1c] p-5 sm:p-6 rounded-2xl border border-white/10 w-full grid gap-4 shadow-2xl relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-fuchsia-500" />
-        <div className="text-center grid gap-0.5 xs:gap-1">
-          <p className="text-gray-400 text-[9px] xs:text-[10px] sm:text-xs tracking-[0.2em] uppercase">
+        <div className="text-center grid gap-1">
+          <p className="text-gray-400 text-[10px] sm:text-xs tracking-[0.2em] uppercase">
             Run Score
           </p>
-          <p className="text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-mono text-white font-black">
+          <p className="text-4xl sm:text-5xl lg:text-6xl font-mono text-white font-black">
             {score.toLocaleString()}
           </p>
         </div>
         <div className="h-px bg-white/10 w-full" />
-        <div className="grid grid-cols-[1fr_auto] items-center bg-black/50 p-2.5 xs:p-3 sm:p-4 rounded-lg sm:rounded-xl border border-white/5 gap-2 xs:gap-3">
-          <span className="text-yellow-400 grid grid-flow-col auto-cols-max items-center gap-1 xs:gap-2 font-bold text-[10px] xs:text-xs sm:text-sm">
-            <Coins size={12} className="xs:w-4 xs:h-4 sm:w-5 sm:h-5" /> Coins
-            Earned
+        <div className="flex items-center justify-between bg-black/50 p-3 rounded-xl border border-white/5 gap-3">
+          <span className="text-yellow-400 flex items-center gap-2 font-bold text-xs sm:text-sm">
+            <Coins size={16} className="sm:w-5 sm:h-5" /> Coins Earned
           </span>
-          <span className="text-lg xs:text-xl sm:text-2xl font-bold text-white">
+          <span className="text-xl sm:text-2xl font-bold text-white">
             +{runCoins}
           </span>
         </div>
       </div>
 
-      <div className="grid gap-2 xs:gap-3 sm:gap-4 w-full">
+      <div className="grid gap-3 w-full">
         <button
+          type="button"
           onClick={onRestart}
-          className="w-full py-2.5 xs:py-3 sm:py-4 bg-white text-black font-black rounded-xl sm:rounded-2xl text-xs xs:text-sm sm:text-lg grid grid-flow-col auto-cols-max place-items-center justify-center gap-1.5 xs:gap-2 active:scale-95 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+          className="w-full py-3 sm:py-4 bg-white text-black font-black rounded-xl text-sm sm:text-lg flex items-center justify-center gap-2 active:scale-95 transition-transform shadow-[0_0_20px_rgba(255,255,255,0.3)] cursor-pointer"
         >
-          <RotateCcw size={14} className="xs:w-4 xs:h-4 sm:w-5 sm:h-5" /> TRY
-          AGAIN
+          <RotateCcw size={16} className="sm:w-5 sm:h-5" /> TRY AGAIN
         </button>
         <button
+          type="button"
           onClick={onHome}
-          className="w-full py-2.5 xs:py-3 sm:py-4 bg-white/5 border border-white/10 text-white font-bold rounded-xl sm:rounded-2xl text-xs xs:text-sm sm:text-lg active:scale-95 transition-transform hover:bg-white/10"
+          className="w-full py-3 sm:py-4 bg-white/10 border border-white/20 text-white font-bold rounded-xl text-sm sm:text-lg active:scale-95 transition-transform hover:bg-white/20 cursor-pointer"
         >
           MAIN MENU
         </button>
@@ -992,7 +1062,7 @@ const ResultsPage = ({ score, runCoins, onRestart, onHome }: any) => (
 );
 
 // ============================================================================
-// --- Core Race Engine ---
+// --- Core Race Engine (auto-moving + can accelerate) ---
 // ============================================================================
 type Input = {
   left: boolean;
@@ -1021,6 +1091,7 @@ const RaceComponent = ({
     steer: 0,
     rotation: 0,
     speed: GAME_SPEED_BASE * selectedCar.speedMultiplier * 0.5,
+    cruiseSpeed: GAME_SPEED_BASE * selectedCar.speedMultiplier * 0.5, // auto-cruise baseline
     maxSpeed: GAME_SPEED_BASE * selectedCar.speedMultiplier,
     nitro: 100,
     nitroOn: false,
@@ -1030,6 +1101,7 @@ const RaceComponent = ({
     spawn: 0,
     objs: [] as GameObject[],
     over: false,
+    overFired: false,
   });
   const roadRef = useRef<HTMLDivElement>(null);
   const [, setFrame] = useState(0);
@@ -1066,30 +1138,31 @@ const RaceComponent = ({
       const dt = deltaTime / 16.66;
       const inp = input.current;
 
-      // --- SPEED / BRAKE ---
-      // Brake applies strong deceleration so player actually slows,
-      // while the world (traffic + road) keeps scrolling based on
-      // the *world speed* which is derived from the current speed.
+      // --- SPEED MODEL: auto-cruise + accelerate + brake ---
       if (inp.brake) {
-        g.speed = Math.max(0, g.speed - 0.28 * dt);
+        // Strong deceleration, fully stops at 0
+        g.speed = Math.max(0, g.speed - 0.35 * dt);
       } else if (inp.gas) {
-        g.speed += 0.03 * dt;
+        // Accelerate above cruise
+        g.speed = Math.min(g.maxSpeed, g.speed + 0.04 * dt);
       } else {
-        g.speed -= 0.01 * dt;
+        // Coast back toward cruise speed automatically
+        if (g.speed < g.cruiseSpeed) {
+          g.speed = Math.min(g.cruiseSpeed, g.speed + 0.02 * dt);
+        } else {
+          g.speed = Math.max(g.cruiseSpeed, g.speed - 0.02 * dt);
+        }
       }
 
-      g.nitroOn = inp.nitro && g.nitro > 0;
+      g.nitroOn = inp.nitro && g.nitro > 0 && g.speed > 0.05;
       g.nitro = g.nitroOn
         ? Math.max(0, g.nitro - 0.8 * dt)
         : Math.min(100, g.nitro + 0.2 * dt);
       const cap = g.nitroOn ? g.maxSpeed * 2 : g.maxSpeed;
       g.speed = Math.max(0, Math.min(g.speed, cap));
 
-      // WORLD SPEED: traffic & road scroll relative to your speed.
-      // When braking, this value drops as your speed drops — so the
-      // traffic appears to move slower relative to you, simulating
-      // the car decelerating while the road still flows.
-      const worldSpeed = Math.max(0.15, g.speed);
+      // World speed: 0 when fully stopped → everything freezes
+      const worldSpeed = g.speed;
 
       const steerInput = (inp.right ? 1 : 0) - (inp.left ? 1 : 0);
       g.steer += (steerInput - g.steer) * 0.25 * dt;
@@ -1101,36 +1174,38 @@ const RaceComponent = ({
       if (roadRef.current)
         roadRef.current.style.setProperty("--roadY", `${g.roadY}px`);
 
-      g.spawn += deltaTime;
-      if (g.spawn > 800) {
-        g.spawn = 0;
-        const isCoin = Math.random() > 0.8;
-        const idx = Math.floor(Math.random() * TRAFFIC_VARIANTS.length);
-        const tv = TRAFFIC_VARIANTS[idx];
-        g.objs.push({
-          id: Date.now() + Math.random(),
-          x:
-            Math.random() * (ROAD_RIGHT_BOUND - ROAD_LEFT_BOUND - 15) +
-            ROAD_LEFT_BOUND +
-            7.5,
-          y: -30,
-          type: isCoin ? "coin" : "traffic",
-          color:
-            TRAFFIC_COLORS[Math.floor(Math.random() * TRAFFIC_COLORS.length)],
-          image: isCoin ? undefined : TRAFFIC_IMAGES[idx],
-          variant: tv,
-          width: isCoin ? 8 : tv === "truck" ? 22 : 20,
-          height: isCoin ? 8 : tv === "truck" ? 26 : 20,
-        });
+      if (worldSpeed > 0.05) {
+        g.spawn += deltaTime;
+        if (g.spawn > 800) {
+          g.spawn = 0;
+          const isCoin = Math.random() > 0.8;
+          const idx = Math.floor(Math.random() * TRAFFIC_VARIANTS.length);
+          const tv = TRAFFIC_VARIANTS[idx];
+          g.objs.push({
+            id: Date.now() + Math.random(),
+            x:
+              Math.random() * (ROAD_RIGHT_BOUND - ROAD_LEFT_BOUND - 15) +
+              ROAD_LEFT_BOUND +
+              7.5,
+            y: -30,
+            type: isCoin ? "coin" : "traffic",
+            color:
+              TRAFFIC_COLORS[Math.floor(Math.random() * TRAFFIC_COLORS.length)],
+            image: isCoin ? undefined : TRAFFIC_IMAGES[idx],
+            variant: tv,
+            width: isCoin ? 8 : tv === "truck" ? 22 : 20,
+            height: isCoin ? 8 : tv === "truck" ? 26 : 20,
+          });
+        }
       }
 
       const playerY = 75;
       const remaining: GameObject[] = [];
       let crashed = false;
       for (const obj of g.objs) {
-        // Objects move using worldSpeed — when braking, worldSpeed
-        // is lower so objects slow their descent relative to the screen.
-        obj.y += worldSpeed * dt * 1.5;
+        if (worldSpeed > 0.05) {
+          obj.y += worldSpeed * dt * 1.5;
+        }
         const hit =
           Math.abs(obj.x - g.x) < 10 && Math.abs(obj.y - playerY) < 15;
         if (hit && obj.type === "coin") {
@@ -1138,7 +1213,7 @@ const RaceComponent = ({
           g.score += 50;
           continue;
         }
-        if (hit) {
+        if (hit && obj.type === "traffic") {
           crashed = true;
         }
         if (obj.y < 120) remaining.push(obj);
@@ -1149,9 +1224,11 @@ const RaceComponent = ({
 
       setFrame((f) => f + 1);
 
-      if (crashed) {
+      if (crashed && !g.overFired) {
+        // Fire exactly once — prevents double-submit on restart
+        g.overFired = true;
         g.over = true;
-        onGameOver(g.score, g.coins);
+        onGameOver(Math.floor(g.score), g.coins);
         return;
       }
       raf = requestAnimationFrame(loop);
@@ -1254,7 +1331,7 @@ const RaceComponent = ({
             style={{ transform: `rotate(${g.rotation}deg)` }}
           />
           {g.nitroOn && (
-            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 grid grid-flow-col auto-cols-max gap-1">
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex gap-1">
               <div className="w-2 h-10 bg-cyan-400 rounded-full blur-md animate-pulse" />
               <div className="w-2 h-14 bg-blue-500 rounded-full blur-sm animate-pulse" />
               <div className="w-2 h-10 bg-cyan-400 rounded-full blur-md animate-pulse" />
@@ -1263,56 +1340,46 @@ const RaceComponent = ({
           {input.current.brake && g.speed > 0 && (
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80%] h-2 bg-red-600 shadow-[0_0_20px_red] animate-pulse" />
           )}
+          {input.current.brake && g.speed === 0 && (
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-red-400 font-bold text-xs animate-pulse">
+              STOPPED
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Top HUD */}
-      <div className="absolute top-0 left-0 right-0 p-1.5 xs:p-2 sm:p-4 grid grid-cols-[auto_1fr_auto] items-start z-40 pointer-events-none gap-1 xs:gap-2">
-        <div className="grid gap-1 xs:gap-2">
-          <div className="grid grid-flow-col auto-cols-max items-center gap-1 xs:gap-2 bg-black/50 backdrop-blur-md px-1.5 xs:px-2 sm:px-3 py-1 xs:py-2 rounded-lg xs:rounded-xl border border-white/10">
-            <Trophy
-              size={10}
-              className="xs:w-3 xs:h-3 sm:w-4 sm:h-4 text-yellow-400"
-            />
-            <span className="text-white font-mono font-bold text-[9px] xs:text-[10px] sm:text-sm">
+      <div className="absolute top-0 left-0 right-0 p-2 sm:p-4 flex items-start justify-between z-40 pointer-events-none gap-2">
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-2 bg-black/50 backdrop-blur-md px-2 sm:px-3 py-1 sm:py-2 rounded-lg sm:rounded-xl border border-white/10">
+            <Trophy size={12} className="sm:w-4 sm:h-4 text-yellow-400" />
+            <span className="text-white font-mono font-bold text-[10px] sm:text-sm">
               {g.score.toLocaleString()}
             </span>
           </div>
-          <div className="grid grid-flow-col auto-cols-max items-center gap-1 xs:gap-2 bg-black/50 backdrop-blur-md px-1.5 xs:px-2 sm:px-3 py-1 xs:py-2 rounded-lg xs:rounded-xl border border-white/10">
-            <Coins
-              size={10}
-              className="xs:w-3 xs:h-3 sm:w-4 sm:h-4 text-yellow-400"
-            />
-            <span className="text-white font-mono font-bold text-[9px] xs:text-[10px] sm:text-sm">
+          <div className="flex items-center gap-2 bg-black/50 backdrop-blur-md px-2 sm:px-3 py-1 sm:py-2 rounded-lg sm:rounded-xl border border-white/10">
+            <Coins size={12} className="sm:w-4 sm:h-4 text-yellow-400" />
+            <span className="text-white font-mono font-bold text-[10px] sm:text-sm">
               {g.coins}
             </span>
           </div>
         </div>
 
-        <div />
-
-        <div className="grid justify-items-end gap-0.5 xs:gap-1 bg-black/50 backdrop-blur-md p-1.5 xs:p-2 sm:p-3 rounded-lg xs:rounded-xl border border-white/10">
-          <div className="text-white font-black text-base xs:text-xl sm:text-3xl lg:text-4xl italic drop-shadow-md leading-none">
+        <div className="flex flex-col items-end gap-1 bg-black/50 backdrop-blur-md p-2 sm:p-3 rounded-lg sm:rounded-xl border border-white/10">
+          <div className="text-white font-black text-lg sm:text-3xl lg:text-4xl italic drop-shadow-md leading-none">
             {mph}{" "}
-            <span className="text-[8px] xs:text-[9px] sm:text-sm font-normal text-cyan-400">
+            <span className="text-[9px] sm:text-sm font-normal text-cyan-400">
               MPH
             </span>
           </div>
-          <div className="grid grid-flow-col auto-cols-max items-center gap-0.5 xs:gap-1 text-[7px] xs:text-[8px] sm:text-[10px] text-gray-300 font-mono">
-            <Activity
-              size={7}
-              className="xs:w-2 xs:h-2 sm:w-2.5 sm:h-2.5 text-red-400"
-            />
+          <div className="flex items-center gap-1 text-[8px] sm:text-[10px] text-gray-300 font-mono">
+            <Activity size={8} className="sm:w-2.5 sm:h-2.5 text-red-400" />
             <span>{torque} Nm</span>
           </div>
-          <div className="grid grid-flow-col auto-cols-max items-center gap-0.5 xs:gap-1 text-[7px] xs:text-[8px] sm:text-[10px] text-gray-300 font-mono">
-            <Wind
-              size={7}
-              className="xs:w-2 xs:h-2 sm:w-2.5 sm:h-2.5 text-blue-400"
-            />
+          <div className="flex items-center gap-1 text-[8px] sm:text-[10px] text-gray-300 font-mono">
+            <Wind size={8} className="sm:w-2.5 sm:h-2.5 text-blue-400" />
             <span>{wind} km/h</span>
           </div>
-          <div className="w-full h-1 xs:h-1.5 mt-0.5 xs:mt-1 bg-white/10 rounded-full overflow-hidden">
+          <div className="w-full h-1.5 mt-1 bg-white/10 rounded-full overflow-hidden">
             <div
               className="h-full bg-cyan-400"
               style={{ width: `${g.nitro}%` }}
@@ -1321,55 +1388,50 @@ const RaceComponent = ({
         </div>
       </div>
 
-      {/* Bottom controls */}
-      <div className="absolute bottom-0 left-0 right-0 p-1.5 xs:p-2 sm:p-4 pb-2 xs:pb-3 sm:pb-6 z-40 pointer-events-auto bg-gradient-to-t from-black via-black/80 to-transparent grid grid-cols-[auto_1fr_auto] items-end gap-1 xs:gap-2">
-        <div className="grid grid-flow-col auto-cols-max gap-1 xs:gap-2">
+      <div className="absolute bottom-0 left-0 right-0 p-2 sm:p-4 pb-3 sm:pb-6 z-40 pointer-events-auto bg-gradient-to-t from-black via-black/80 to-transparent flex items-end justify-between gap-2">
+        <div className="flex gap-2">
           <button
             {...hold("left")}
-            className="w-10 h-14 xs:w-12 xs:h-16 sm:w-16 sm:h-20 rounded-lg xs:rounded-xl sm:rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 grid place-items-center text-white active:bg-cyan-600/50 touch-none"
+            className="w-12 h-16 sm:w-16 sm:h-20 rounded-lg sm:rounded-xl bg-white/5 backdrop-blur-md border border-white/10 grid place-items-center text-white active:bg-cyan-600/50 touch-none"
           >
-            <ChevronLeft className="w-5 h-5 xs:w-6 xs:h-6 sm:w-8 sm:h-8" />
+            <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
           </button>
           <button
             {...hold("right")}
-            className="w-10 h-14 xs:w-12 xs:h-16 sm:w-16 sm:h-20 rounded-lg xs:rounded-xl sm:rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 grid place-items-center text-white active:bg-cyan-600/50 touch-none"
+            className="w-12 h-16 sm:w-16 sm:h-20 rounded-lg sm:rounded-xl bg-white/5 backdrop-blur-md border border-white/10 grid place-items-center text-white active:bg-cyan-600/50 touch-none"
           >
-            <ChevronRight className="w-5 h-5 xs:w-6 xs:h-6 sm:w-8 sm:h-8" />
+            <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
           </button>
         </div>
 
-        <div />
-
-        <div className="grid justify-items-end gap-1 xs:gap-2 sm:gap-3">
-          <div className="grid grid-flow-col auto-cols-max gap-1 xs:gap-2 sm:gap-3">
+        <div className="flex flex-col items-end gap-2 sm:gap-3">
+          <div className="flex gap-2 sm:gap-3">
             <button
               {...hold("brake")}
-              className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16 rounded-full bg-red-950/80 border-2 border-red-500 grid place-items-center text-red-200 active:bg-red-600 touch-none shadow-[0_0_15px_rgba(220,38,38,0.5)]"
+              className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-red-950/80 border-2 border-red-500 grid place-items-center text-red-200 active:bg-red-600 touch-none shadow-[0_0_15px_rgba(220,38,38,0.5)]"
             >
-              <span className="font-bold text-[8px] xs:text-[9px] sm:text-xs">
-                BRAKE
-              </span>
+              <span className="font-bold text-[9px] sm:text-xs">BRAKE</span>
             </button>
             <button
               {...hold("gas")}
-              className="w-10 h-10 xs:w-12 xs:h-12 sm:w-16 sm:h-16 rounded-full bg-green-950/80 border-2 border-green-500 grid place-items-center text-green-200 active:bg-green-600 touch-none shadow-[0_0_15px_rgba(34,197,94,0.5)]"
+              className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-green-950/80 border-2 border-green-500 grid place-items-center text-green-200 active:bg-green-600 touch-none shadow-[0_0_15px_rgba(34,197,94,0.5)]"
             >
-              <span className="font-bold text-[8px] xs:text-[9px] sm:text-xs leading-tight">
+              <span className="font-bold text-[9px] sm:text-xs leading-tight">
                 GAS
               </span>
             </button>
           </div>
           <button
             {...hold("nitro")}
-            className={`w-16 h-8 xs:w-20 xs:h-10 sm:w-24 sm:h-14 rounded-lg xs:rounded-xl sm:rounded-2xl grid place-items-center border-2 touch-none transition-all ${
+            className={`w-20 h-10 sm:w-24 sm:h-14 rounded-lg sm:rounded-xl grid place-items-center border-2 touch-none transition-all ${
               g.nitro > 0
                 ? "bg-blue-600 border-blue-400 shadow-[0_0_25px_rgba(37,99,235,0.8)]"
                 : "bg-slate-800 border-slate-600 text-gray-500"
             }`}
           >
             <Zap
-              size={14}
-              className={`xs:w-5 xs:h-5 sm:w-6 sm:h-6 ${
+              size={18}
+              className={`sm:w-6 sm:h-6 ${
                 g.nitro > 0 ? "fill-white text-white" : ""
               }`}
             />
@@ -1416,25 +1478,27 @@ export default function App() {
   };
 
   const startRace = () => {
+    // Bump runId → forces RaceComponent to remount fresh
     setRunId((r) => r + 1);
     setView("race");
   };
 
-  const showChrome = view !== "race";
+  const showChrome = view !== "race" && view !== "results";
 
   return (
-    <div className="w-full rounded-2xl bg-black font-sans selection:bg-cyan-500 selection:text-white flex justify-center overflow-x-hidden">
-      <div className="relative w-full bg-[#050810] shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col ">
+    <div className="min-h-screen w-full bg-black font-sans selection:bg-cyan-500 selection:text-white flex justify-center items-center overflow-x-hidden">
+      <div className="relative w-full max-w-[1920px] min-h-screen bg-[#050810] shadow-[0_0_50px_rgba(0,0,0,0.8)] flex flex-col">
         {showChrome && (
           <Header coins={coins} onHistory={() => setView("history")} />
         )}
 
-        <div className="relative flex-1 flex flex-col">
+        <div className="relative flex-1 flex flex-col min-h-0">
+          {/* Race scene stays mounted behind results so background remains visible */}
           {(view === "race" || view === "results") && (
             <div
               className={`absolute inset-0 ${
                 view === "results"
-                  ? "pointer-events-none opacity-50 blur-sm"
+                  ? "pointer-events-none opacity-40 blur-sm"
                   : ""
               }`}
             >
@@ -1457,6 +1521,7 @@ export default function App() {
               leaderboard={leaderboard}
               cars={cars}
               selectedCarId={selectedCarId}
+              history={history}
             />
           )}
           {view === "garage" && (
@@ -1478,6 +1543,8 @@ export default function App() {
               clearAllMemory={clearAllMemory}
             />
           )}
+
+          {/* Results modal renders above the frozen race scene */}
           {view === "results" && (
             <ResultsPage
               score={result.score}
